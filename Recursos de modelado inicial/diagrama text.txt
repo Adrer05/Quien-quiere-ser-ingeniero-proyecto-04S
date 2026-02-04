@@ -1,0 +1,62 @@
+┌─────────────────┐      ┌─────────────────┐      ┌─────────────────┐
+│    USUARIO      │      │    CARRERA      │      │    SEMESTRE     │
+├─────────────────┤      ├─────────────────┤      ├─────────────────┤
+│ PK id           │1    1│ PK id           │1    *│ PK id           │
+│    nombre       │◄─────┤    nombre       │──────│    numero       │
+│    apellido     │      │                 │      │ FK carrera_id   │
+│    usuario      │      └─────────┬───────┘      └─────────┬───────┘
+└─────────┬───────┘                │                        │
+          │                        │ *                    1 │
+          │ 1:1                    │                        │
+┌─────────▼───────┐      ┌─────────▼───────┐      ┌─────────▼───────┐
+│ ADMINISTRADOR   │      │    JUGADOR      │      │   ASIGNATURA    │
+├─────────────────┤      ├─────────────────┤      ├─────────────────┤
+│ PK id           │      │ PK id           │      │ PK id           │
+│ FK usuario_id   │      │ FK usuario_id   │      │    nombre       │
+│    contraseña_  │      │ FK carrera_id   │      │ FK semestre_id  │
+│       hash      │      │ es_estudiante_  │      └─────────┬───────┘
+└─────────┬───────┘      │    unefa        │                │
+          │ *          * │    semestre     │                │ 1
+          │              │    ocupacion    │                │
+┌─────────▼───────┐      │ puntuacion_total│                │
+│    PROFESOR     │      └─────────────────┘      ┌─────────▼───────┐
+├─────────────────┤      ┌─────────────────┐      │ PROF_ASIGNATURA │
+│ PK id           │      │    RANKING      │      ├─────────────────┤
+│ FK usuario_id   │      ├─────────────────┤      │ PK profesor_id  │
+│    contraseña_  │      │ PK id           │1    *│ PK asignatura_id│
+│    especial     │      │ FK jugador_id   │◄─────┤                 │
+└─────────┬───────┘      │    puntuacion_  │      └─────────┬───────┘
+          │ *            │       maxima     │                │ 1
+          │              └─────────────────┘                │
+          │                                                │
+          │                                      ┌─────────▼───────┐
+          │                                      │     TEMA        │
+          │                                      ├─────────────────┤
+          │                                      │ PK id           │
+          │                                      │    nombre       │
+          │                                      │ FK asignatura_id│
+          │                                      └─────────┬───────┘
+          │ *                                          1   │
+          │                                                │
+          │                                      ┌─────────▼───────┐
+          │                                      │    PREGUNTA     │
+          │                                      ├─────────────────┤
+          │                                      │ PK id           │
+          │                                      │    texto        │
+          │                                      │ FK tema_id      │
+          │                                      │ creado_por_admin│
+          │                                      │ creado_por_profe│
+          │                                      │ modificado_por  │
+          │                                      │    activa       │
+          │                                      └─────────┬───────┘
+          │                                             1  │
+          │                                                │
+          │                                      ┌─────────▼───────┐      ┌─────────────────┐
+          │                                      │    RESPUESTA    │      │    PARTIDA      │
+          │                                      ├─────────────────┤      ├─────────────────┤
+          │                                      │ PK id           │4    1│ PK id           │
+          │                                      │ FK pregunta_id  │◄─────┤ FK jugador_id   │
+          │                                      │    texto        │      │    puntuacion_  │
+          │                                      │ es_correcta     │      │    obtenida     │
+          │                                      │ letra           │      └─────────────────┘
+          │                                      └─────────────────┘
