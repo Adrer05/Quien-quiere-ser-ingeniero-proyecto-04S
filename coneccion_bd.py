@@ -1,3 +1,5 @@
+import os
+os.system("cls")
 import psycopg2
 
 conn = psycopg2.connect(
@@ -8,6 +10,9 @@ conn = psycopg2.connect(
     port="5432"
 )
 
-cur = conn.cursor()
-cur.execute("SELECT * FROM usuarios")
-results = cur.fetchall()
+cursor = conn.cursor()
+cursor.execute("INSERT INTO usuario (nombre, apellido, usuario) values (%s, %s, %s)", ("Adrian","Ferrer","Adrer"))
+conn.commit()
+cursor.execute("SELECT * FROM usuario")
+results = cursor.fetchall()
+print(results)
