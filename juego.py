@@ -3,6 +3,7 @@ import time
 import threading
 import sys
 
+
 def limpiar_pantalla():
     # Detecta si es Windows o Unix 
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -43,9 +44,12 @@ def jugar(preguntas, puntaje):
         if r == p.correcta:
             print("¡Correcto! +10 puntos")
             puntaje += 10
+            cursor.execute("UPDATE jugador SET puntuacion_total = puntuacion_total + 10 WHERE id = 1;")
+            connection.commit()
+
             #sumar 10pts al puntaje_total 
         else:
             print(f"Incorrecto. La respuesta era '{p.correcta}'")
         
-        time.sleep(2)
+        time.sleep(1)
     return puntaje

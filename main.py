@@ -3,12 +3,10 @@ from juego import limpiar_pantalla, preguntar_listo, jugar
 import os
 os.system("cls")
 
-def main():
-    nombre = input("Bienvenido al Juego de Preguntas ¡Quién quiere ser Ing!\nIngresa tu nombre: ")
-    puntaje = 0
 
-    limpiar_pantalla()
-    print(f"Hola, {nombre}. Selecciona el tema:")
+
+def main():
+
     print("1. Matemáticas\n2. Física\n3. Unefa\n4. Venezuela\n5. Generales")
     ## buscar el tema en la base de datos
     try:
@@ -25,13 +23,6 @@ def main():
     except ValueError:
         print("Debes ingresar un número.")
         return
-
-    limpiar_pantalla()
-    print(f"Juego finalizado, {nombre}. Tu récord: {puntaje} puntos.")
-
-    # Guardado en archivo
-    with open("record_jugadores.txt", "a", encoding="utf-8") as archivo:
-        archivo.write(f"{nombre} - {puntaje} pts\n")
 
 if __name__ == "__main__":
     main()
