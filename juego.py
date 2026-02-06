@@ -43,6 +43,7 @@ def jugar(preguntas, puntaje):
         if r == p.correcta:
             print("¡Correcto! +10 puntos")
             puntaje += 10
+            #sumar 10pts al puntaje_total 
         else:
             print(f"Incorrecto. La respuesta era '{p.correcta}'")
         

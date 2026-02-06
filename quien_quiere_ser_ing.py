@@ -10,7 +10,7 @@ def main():
     limpiar_pantalla()
     print(f"Hola, {nombre}. Selecciona el tema:")
     print("1. Matemáticas\n2. Física\n3. Unefa\n4. Venezuela\n5. Generales")
-    
+    ## buscar el tema en la base de datos
     try:
         tema = int(input("Opción: "))
         if not preguntar_listo():
